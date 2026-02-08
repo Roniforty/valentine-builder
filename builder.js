@@ -5,7 +5,7 @@
 // CONFIGURATION
 // ============================================
 
-const GIPHY_API_KEY = 'YOUR_GIPHY_API_KEY'; // Replace with actual key
+const GIPHY_API_KEY = 'nKHx6hxuatG8lLzhX9J8fO3DaQUpZjUD'; // Replace with actual key
 const STRIPE_PUBLIC_KEY = 'YOUR_STRIPE_KEY'; // Replace with actual key
 
 // ============================================
