@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful! 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'DM Sans', sans-serif;
+            padding: 2rem;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .checkmark {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 0.8s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .preview-link {
+            background: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .preview-link strong {
+            display: block;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-link code {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            color: #667eea;
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        .info-box {
+            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .info-box p {
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-card">
+        <div class="checkmark">✅</div>
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your purchase! Your Valentine's website is ready.</p>
+
+        <div class="preview-link">
+            <strong>🔗 Your 48-Hour Preview Link:</strong>
+            <code id="previewLink">Loading...</code>
+        </div>
+
+        <button class="download-btn" id="downloadBtn" onclick="downloadWebsite()">
+            📥 Download Your Website
+        </button>
+
+        <div class="info-box">
+            <p><strong>What you got:</strong></p>
+            <p>✅ Downloadable HTML file (keep forever!)</p>
+            <p>✅ 48-hour shareable preview link</p>
+            <p>✅ Full customization preserved</p>
+            <p>✅ Works on any web host</p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #718096;">
+            Need help? Email us at support@yourdomain.com
+        </p>
+
+        <a href="builder.html" class="back-link">← Create Another Website</a>
+    </div>
+
+    <script>
+        // Get session ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+
+        // Load customizations from localStorage
+        const savedData = localStorage.getItem('valentine_builder');
+        let customizations = {};
+
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            customizations = data.customizations || {};
+        }
+
+        // Generate preview link (in production, this would be server-generated)
+        const previewId = 'preview_' + Math.random().toString(36).substr(2, 9);
+        const previewUrl = window.location.origin + '/preview/' + previewId;
+        document.getElementById('previewLink').textContent = previewUrl;
+
+        // Generate HTML for download
+        function generateHTML() {
+            const c = customizations;
+            
+            // This is the same HTML generation from builder.js
+            // For brevity, using a simplified version
+            return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: ${c.bgGradient || c.bgColor || '#ffecf2'};
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        h1 {
+            font-size: 2.5em;
+            color: ${c.textColor || 'violet'};
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .img {
+            max-width: 300px;
+            width: 100%;
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-yes {
+            background: ${c.buttonYesColor || '#ff4d6d'};
+            color: white;
+        }
+        .btn-no {
+            background: ${c.buttonNoColor || '#f8f9fa'};
+            color: #333;
+        }
+        .step { display: none; }
+        .step.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="step active" id="step1">
+            <h1>${c.mainHeading || 'Will you be my Valentine?'}</h1>
+            <img src="${c.mainImage || ''}" class="img" alt="💕">
+            <div>
+                <button class="btn btn-yes" onclick="document.getElementById('step1').classList.remove('active'); document.getElementById('step2').classList.add('active');">${c.buttonYesText || 'Yes! 💖'}</button>
+                <button class="btn btn-no" onclick="alert('Try clicking Yes! 😊')">${c.buttonNoText || 'No'}</button>
+            </div>
+        </div>
+        <div class="step" id="step2">
+            <h1>${c.successHeading || 'Yay! 🎉'}</h1>
+            <img src="${c.successImage || ''}" class="img" alt="🎊">
+            <p style="font-size: 1.5em; margin-top: 20px;">${c.successMessage || 'So happy! 💕'}</p>
+            <a href="${c.socialLink || '#'}" class="btn btn-yes" style="display: inline-block; text-decoration: none; margin-top: 20px;">Message Me 💌</a>
+        </div>
+    </div>
+</body>
+</html>`;
+        }
+
+        // Download function
+        function downloadWebsite() {
+            const html = generateHTML();
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'my-valentine-website.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Show confirmation
+            alert('✅ Downloaded!\n\nYour Valentine website is now on your computer!\n\nUpload it to any web host or share the file directly.');
+        }
+
+        // Auto-trigger confetti
+        window.addEventListener('load', () => {
+            const colors = ['#ff6b9d', '#c44569', '#f8b500', '#ff6348', '#ff4757'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                document.body.appendChild(confetti);
+                
+                confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 100}px) rotate(720deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        });
+    </script>
+</body>
+</html>

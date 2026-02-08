@@ -1,0 +1,23 @@
+{
+  "name": "valentine-website-builder",
+  "version": "1.0.0",
+  "description": "Create beautiful Valentine's websites in minutes",
+  "main": "builder.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build needed - static site'",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "valentine",
+    "website-builder",
+    "love",
+    "romantic"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
