@@ -793,7 +793,7 @@ function initiatePayment() {
     // Redirect to Gumroad - PASTE YOUR GUMROAD LINK HERE
     window.open('https://lihonway.gumroad.com/l/kiosx', '_blank'); 
     }
-}
+
 
 function processDownload() {
     const html = generateHTML();
