@@ -493,7 +493,14 @@ async function searchGiphy(query, targetField) {
     
     try {
         // For MVP, using demo key - replace with actual key
-        const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=# GIPHY_API_KEY
+        const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=nKHx6hxuatG8lLzhX9J8fO3DaQUpZjUD
+
+| Deploy context                  | Value                            |
+| ------------------------------- | -------------------------------- |
+| Production                      | nKHx6hxuatG8lLzhX9J8fO3DaQUpZjUD |
+| Deploy Preview                  | nKHx6hxuatG8lLzhX9J8fO3DaQUpZjUD |
+| Branch deploy                   | nKHx6hxuatG8lLzhX9J8fO3DaQUpZjUD |
+| Local development (Netlify CLI) | nKHx6hxuatG8lLzhX9J8fO3DaQUpZjUD | 
 
 | Deploy context                  | Value                            |
 | ------------------------------- | -------------------------------- |
