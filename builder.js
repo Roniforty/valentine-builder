@@ -784,11 +784,14 @@ function generateHTML() {
 // ============================================
 
 function initiatePayment() {
-    // For 24-hour MVP, using simple approach
-    if (confirm('Ready to download for $2?\n\nThis will redirect you to payment.\nAfter payment, you\'ll get:\n- Download link for HTML file\n- 48-hour preview link\n\nContinue?')) {
-        // In production, integrate Stripe here
-        // For now, simulate payment
-        processDownload();
+  // Save customizations before redirecting
+    saveToLocalStorage();
+    
+    // Show message
+    alert('💕 Redirecting to secure checkout!\n\nAfter payment:\n✅ You\'ll get instant download\n✅ Come back here anytime\n\nClick OK to continue to payment!');
+    
+    // Redirect to Gumroad - PASTE YOUR GUMROAD LINK HERE
+    window.open('https://lihonway.gumroad.com/l/kiosx', '_blank'); 
     }
 }
 
